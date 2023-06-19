@@ -1,8 +1,24 @@
 import React, { Component } from "react";
 import styles from "./Dynaform.module.css";
-import renderFormFromData, { DynaFormData } from "./renderFormData";
+import DFRow from "./DynaRow";
+import { DynaFormData } from "./__Types";
+
+export interface DynaformProps {
+    className?: string;
+    formData: DynaFormData;
+}
 
 export default class Dynaform extends Component<DynaformProps> {
+    renderFormFromData = (formData: DynaFormData): React.ReactNode => {
+        return (
+            <>
+                {formData.rows.map((v, i) => {
+                    return <DFRow key={i} data={v} />;
+                })}
+            </>
+        );
+    };
+
     render(): React.ReactNode {
         let con_class = styles.con;
 
@@ -10,13 +26,10 @@ export default class Dynaform extends Component<DynaformProps> {
             con_class += " " + this.props.className;
         }
 
-        let form = renderFormFromData(this.props.formData);
-
-        return <div className={con_class}>{form}</div>;
+        return (
+            <div className={con_class}>
+                    {this.renderFormFromData(this.props.formData)}
+            </div>
+        );
     }
-}
-
-interface DynaformProps {
-    className: string;
-    formData: DynaFormData;
 }

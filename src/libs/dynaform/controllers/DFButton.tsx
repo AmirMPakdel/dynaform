@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import styles from "./DFButton.module.css";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 export default class DFButton extends Component<DFButtonProps> {
-
     render(): React.ReactNode {
-        return(
-            <TextField 
-            id="outlined-basic" 
-            label="Outlined" 
-            variant="outlined"
-            />
-        )
-    }    
+        return (
+            <div className={styles.con}>
+                <Button variant="contained" color="primary">
+                    {this.props.title}
+                </Button>
+            </div>
+        );
+    }
 }
 
-interface DFButtonProps{
-    
+interface DFButtonProps {
+    title: string;
 }

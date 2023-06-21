@@ -9,6 +9,7 @@ export interface DynaButton extends DynaElement {
 
 export interface DynaSelect extends DynaElement {
     onChange: ((event: any, child: React.ReactNode) => void) | undefined;
+    options: Array<{value:any, title:any}>
     value: any;
 }
 

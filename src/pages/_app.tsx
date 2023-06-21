@@ -26,6 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <script src="/statics/js/helpContent.js"/>
       <script src="/statics/js/env.js"/>
       <script src="/statics/js/poly.js"/> */}
+                <link rel="stylesheet" href="/statics/styles/global.css" />
+                <link rel="stylesheet" href="/statics/styles/colors.css" />
+                <link rel="stylesheet" href="/statics/styles/fonts.css" />
+                <link rel="stylesheet" href="/statics/styles/forced.css" />
+                <link rel="stylesheet" href="/statics/styles/shadows.css" />
+                <link rel="stylesheet" href="/statics/styles/animate.min.css" />
             </Head>
             <Component {...pageProps} />
         </>

@@ -10,6 +10,8 @@ export default class DFTextInput extends Component<DFTextInputProps> {
 }
 
 interface DFTextInputProps {
+    key?: string | number,
+    ref?: (ref:DFTextInput)=>void, 
     title: string;
     value: string;
     onChange?: (event: any, child: React.ReactNode) => void;

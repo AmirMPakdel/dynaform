@@ -18,6 +18,8 @@ export default class DFDatePicker extends Component<DFDatePickerProps> {
 }
 
 interface DFDatePickerProps {
+    key?: string | number,
+    ref?: (ref:DFDatePicker)=>void, 
     value: Date,
-    onChange(date:Date):void,
+    onChange: (e:{value:Date})=>void,
 }

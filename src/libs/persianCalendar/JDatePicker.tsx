@@ -9,7 +9,8 @@ export default class JDatePicker extends Component<Props, State>{
         super(props);
 
         this.state = {
-            turn: 0
+            turn: 0,
+            randomKey: 1,
         }
     }
 
@@ -18,13 +19,13 @@ export default class JDatePicker extends Component<Props, State>{
         if(prevProps.value !== this.props.value){
             
             let turn = this.state.turn==1?0:1;
-            this.setState({turn});
+            this.setState({turn, randomKey:Math.random()});
         }
     }
 
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
         
-        console.log(nextProps.value, this.props.value)
+        console.log("shouldComponentUpdate: ", nextProps.value, this.props.value)
         console.log(nextProps.value !== this.props.value);
         
         if(nextProps.value !== this.props.value){
@@ -36,9 +37,10 @@ export default class JDatePicker extends Component<Props, State>{
     }
 
     render(): React.ReactNode {
-        console.log(this.state.turn)
+        console.log(this.state.turn, this.props.value)
         return(
-            <div className={styles.con} style={{borderColor:"#00b96b"}}>
+            <div className={styles.con} style={{borderColor:"#00b96b"}}
+            key={this.state.randomKey}>
                 {
                     this.state.turn==1?
                     <DatePicker
@@ -59,7 +61,8 @@ export default class JDatePicker extends Component<Props, State>{
 }
 
 interface State{
-    turn: number
+    turn: number,
+    randomKey: number,
 }
 
 interface Props{
@@ -69,7 +72,7 @@ interface Props{
     accentColor?: string,// default:"#0D59F2"
     locale?: "en"|"fa",// default:"fa"
     direction?:	"rtl"|"ltr",// default:"ltr"
-    onChange?(e:any):void,// default:undefined
+    onChange?(e:{value:Date}):void,// default:undefined
     range?:	boolean,// default:false
     from?:	"timestamp"|"Date"|"Dayjs",// default:undefined
     to?: "timestamp"|"Date"|"Dayjs",// default:undefined

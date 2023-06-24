@@ -4,6 +4,7 @@ import { DynaRowData } from "./__Types";
 import DFButton from "./controllers/DFButton";
 import DFSelect from "./controllers/DFSelect";
 import DFTextInput from "./controllers/DFTextInput";
+import DFDatePicker from "./controllers/DFDatePicker";
 
 export default class DynaRow extends Component<DynaRowProps> {
     renderRowElement = (element: any, key: number): React.ReactNode => {
@@ -27,6 +28,26 @@ export default class DynaRow extends Component<DynaRowProps> {
                 <DFTextInput
                     key={key}
                     title={element.title}
+                    value={element.value}
+                    onChange={element.onChange}
+                />
+            );
+        }
+
+        if (element.controller == "button") {
+            return (
+                <DFButton
+                    key={key}
+                    title={element.title}
+                    onClick={element.onClick}
+                />
+            );
+        }
+
+        if (element.controller == "datepicker") {
+            return (
+                <DFDatePicker
+                    key={key}
                     value={element.value}
                     onChange={element.onChange}
                 />

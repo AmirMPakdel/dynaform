@@ -25,10 +25,12 @@ export default class DFButton extends Component<DFButtonProps> {
 }
 
 interface DFButtonProps {
+    key?: string | number,
+    ref?: (ref:DFButton)=>void, 
     title: string;
-    onClick:
+    onClick?:
         | (React.MouseEventHandler<HTMLAnchorElement> &
               React.MouseEventHandler<HTMLButtonElement>)
         | undefined;
-    type: "link" | "text" | "ghost" | "default" | "primary" | "dashed" | undefined,
+    type?: "link" | "text" | "ghost" | "default" | "primary" | "dashed" | undefined,
 }

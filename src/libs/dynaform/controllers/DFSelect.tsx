@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import styles from "./DFSelect.module.css";
 
-interface DFSelectProps {
-    options: Array<{value:any, title:string}>
-    onChange: ((event: any, child: React.ReactNode) => void) | undefined;
-    value: any;
-}
-
 export default class DFSelect extends Component<DFSelectProps> {
     render(): React.ReactNode {
         return (
@@ -15,4 +9,12 @@ export default class DFSelect extends Component<DFSelectProps> {
             </div>
         );
     }
+}
+
+interface DFSelectProps {
+    key?: string | number,
+    ref?: (ref:DFSelect)=>void, 
+    options: Array<{value:any, title:string}>
+    onChange: ((event: any, child: React.ReactNode) => void) | undefined;
+    value: any;
 }

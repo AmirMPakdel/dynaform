@@ -2,3 +2,9 @@
     width: 100vw;
     min-height: 100vh;
 }
+
+.datepicker{
+    width: 10rem;
+    height: 3rem;
+    background-color: yellow;
+}

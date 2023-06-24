@@ -43,7 +43,7 @@ export default class test extends Component<TestProps, TestState> {
                     formData={{
                         rows: [
                             {
-                                columnSizes: [4,4,4],
+                                columnSizes: [2,6,4],
                                 elements: [
                                     {
                                         controller: "button",
@@ -62,17 +62,17 @@ export default class test extends Component<TestProps, TestState> {
                                         },
                                         value: this.state.select1
                                     },
-                                    // {
-                                    //     controller:"select",
-                                    //     id: "select2",
-                                    //     options: [
-                                    //         {value:10, title:"10"}
-                                    //     ],
-                                    //     onChange: (event, child) => {
-                                    //         this.setState({select2:event.target.value})
-                                    //     },
-                                    //     value:this.state.select2
-                                    // },
+                                    {
+                                        controller:"select",
+                                        id: "select2",
+                                        options: [
+                                            {value:10, title:"10"}
+                                        ],
+                                        onChange: (event, child) => {
+                                            this.setState({select2:event.target.value})
+                                        },
+                                        value:this.state.select2
+                                    },
                                 ],
                             },
                         ],

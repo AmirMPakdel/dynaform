@@ -5,7 +5,8 @@ import JDatePicker from "@/libs/persianCalendar/JDatePicker";
 export default class DFDatePicker extends Component<DFDatePickerProps> {
     render(): React.ReactNode {
         return (
-            <div className={styles.con}>
+            <div className={styles.con} 
+            style={{flex:this.props.flex||'1'}}>
                 
                 <JDatePicker
                     className={styles.input}
@@ -19,7 +20,8 @@ export default class DFDatePicker extends Component<DFDatePickerProps> {
 
 interface DFDatePickerProps {
     key?: string | number,
-    ref?: (ref:DFDatePicker)=>void, 
+    ref?: (ref:DFDatePicker)=>void,
+    flex?: number | string,
     value: Date,
     onChange: (e:{value:Date})=>void,
 }

@@ -4,8 +4,12 @@ import { ConfigProvider, Button } from "antd";
 
 export default class DFButton extends Component<DFButtonProps> {
     render(): React.ReactNode {
+        console.log(this.props.flex);
+        
         return (
-            <div className={styles.con}>
+            <div className={styles.con} 
+            style={{flex:this.props.flex||'1'}}>
+                
                 <ConfigProvider
                     theme={{
                         token: {
@@ -27,6 +31,7 @@ export default class DFButton extends Component<DFButtonProps> {
 interface DFButtonProps {
     key?: string | number,
     ref?: (ref:DFButton)=>void, 
+    flex?: number | string,
     title: string;
     onClick?:
         | (React.MouseEventHandler<HTMLAnchorElement> &

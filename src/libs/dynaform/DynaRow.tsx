@@ -7,15 +7,13 @@ import DFTextInput from "./controllers/DFTextInput";
 import DFDatePicker from "./controllers/DFDatePicker";
 
 export default class DynaRow extends Component<DynaRowProps> {
-    renderRowElement = (element: any, key: number): React.ReactNode => {
-        if (element.controller == "button") {
-            return <DFButton key={key} title={element.title} />;
-        }
+    renderRowElement = (element: any, key: number, flex: number): React.ReactNode => {
 
         if (element.controller == "select") {
             return (
                 <DFSelect
                     key={key}
+                    flex={flex}
                     value={element.value}
                     onChange={element.onChange}
                     options={element.options}
@@ -27,6 +25,7 @@ export default class DynaRow extends Component<DynaRowProps> {
             return (
                 <DFTextInput
                     key={key}
+                    flex={flex}
                     title={element.title}
                     value={element.value}
                     onChange={element.onChange}
@@ -38,6 +37,7 @@ export default class DynaRow extends Component<DynaRowProps> {
             return (
                 <DFButton
                     key={key}
+                    flex={flex}
                     title={element.title}
                     onClick={element.onClick}
                 />
@@ -48,6 +48,7 @@ export default class DynaRow extends Component<DynaRowProps> {
             return (
                 <DFDatePicker
                     key={key}
+                    flex={flex}
                     value={element.value}
                     onChange={element.onChange}
                 />
@@ -61,7 +62,7 @@ export default class DynaRow extends Component<DynaRowProps> {
         return (
             <div className={styles.con}>
                 {this.props.data.elements.map((v, i) =>
-                    this.renderRowElement(v, i)
+                    this.renderRowElement(v, i, this.props.data.columnSizes[i])
                 )}
             </div>
         );

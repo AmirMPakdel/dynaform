@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <link rel="stylesheet" href="/statics/styles/global.css" />
                 <link rel="stylesheet" href="/statics/styles/colors.css" />
                 <link rel="stylesheet" href="/statics/styles/fonts.css" />
-                <link rel="stylesheet" href="/statics/styles/forced.css" />
+                {/* <link rel="stylesheet" href="/statics/styles/forced.css" /> */}
                 <link rel="stylesheet" href="/statics/styles/shadows.css" />
                 <link rel="stylesheet" href="/statics/styles/animate.min.css" />
             </Head>

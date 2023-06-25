@@ -3,25 +3,32 @@ import styles from "./DFDatePicker.module.css";
 import JDatePicker from "@/libs/persianCalendar/JDatePicker";
 
 export default class DFDatePicker extends Component<DFDatePickerProps> {
+    onChange = (e: { value: Date }) => {
+        if(this.props.onChange){
+            this.props.onChange(e.value);
+        }
+    };
+
     render(): React.ReactNode {
         return (
-            <div className={styles.con} 
-            style={{flex:this.props.flex||'1'}}>
-                
+            <div
+                className={styles.con}
+                style={{ flex: this.props.flex || "1" }}
+            >
                 <JDatePicker
                     className={styles.input}
                     value={this.props.value}
-                    onChange={this.props.onChange}
+                    onChange={this.onChange}
                 />
             </div>
         );
     }
 }
 
-interface DFDatePickerProps {
-    key?: string | number,
-    ref?: (ref:DFDatePicker)=>void,
-    flex?: number | string,
-    value: Date,
-    onChange: (e:{value:Date})=>void,
+export interface DFDatePickerProps {
+    key?: string | number;
+    ref?: (ref: DFDatePicker) => void;
+    flex?: number | string;
+    value: Date;
+    onChange?: (value: Date) => void;
 }

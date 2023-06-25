@@ -39,7 +39,7 @@ export default class JDatePicker extends Component<Props, State>{
     render(): React.ReactNode {
         console.log(this.state.turn, this.props.value)
         return(
-            <div className={styles.con} style={{borderColor:"#00b96b"}}
+            <div className={styles.con} style={{borderColor:"#0091b1"}}
             key={this.state.randomKey}>
                 {
                     this.state.turn==1?
@@ -47,13 +47,13 @@ export default class JDatePicker extends Component<Props, State>{
                     defaultValue={this.props.value}
                     onChange={this.props.onChange}
                     inputClass={styles.input+" "+this.props.className}
-                    accentColor={"#00b96b"}/>
+                    accentColor={"#0091b1"}/>
                     :
                     <DatePicker
                     defaultValue={this.props.value}
                     onChange={this.props.onChange}
                     inputClass={styles.input+" "+this.props.className}
-                    accentColor={"#00b96b"}/>
+                    accentColor={"#0091b1"}/>
                 }
             </div>
         )

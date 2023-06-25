@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import styles from "./DFTextInput.module.css";
+import styles from "./DFTextArea.module.css";
 
-export default class DFTextInput extends Component<DFTextInputProps> {
+export default class DFTextArea extends Component<DFTextAreaProps>{
     state = {
         error: "",
     };
@@ -12,35 +12,10 @@ export default class DFTextInput extends Component<DFTextInputProps> {
     }
 
     onChange = (e: { target: { value: any } }) => {
-        if (!this.props.onChange) return;
-
-        let val = e.target.value;
-
-        // if(val == ""){
-        //     this.props.onChange(val);
-        //     return;
-        // }
-
-        // if(this.props.type == "price"){
-        //     val = priceFormattoInteger(val);
-        //     val = priceFormat(val);
-        // }
-
-        // if(this.props.inputFilter){
-
-        //     let {value , error} =
-        //     this.props.inputFilter(this.props.value, val);
-
-        //     this.props.onChange(value);
-
-        //     this.setState({error});
-
-        // }else{
-
-        //     this.props.onChange(val);
-        // }
-
-        this.props.onChange(val);
+        if (this.props.onChange) {
+            let val = e.target.value;
+            this.props.onChange(val);
+        }
     };
 
     centerize = () => {
@@ -84,12 +59,6 @@ export default class DFTextInput extends Component<DFTextInputProps> {
             add_class += " beci ";
         }
 
-        let m_input_type = "";
-        if (this.props.type === "password") {
-            m_input_type = "password";
-        } else if (this.props.type === "price") {
-            m_input_type = "tel";
-        }
 
         return (
             <div
@@ -99,10 +68,6 @@ export default class DFTextInput extends Component<DFTextInputProps> {
                     ...this.props.style,
                 }}
             >
-                {/* {
-                    this.props.title?
-                    <div className={styles.tput_title} style={{...title_st, ...this.props.titleStyle}}>{this.props.title}</div>:null
-                } */}
 
                 {this.props.value ? (
                     <div className={styles.top_title + " fdc1"}>
@@ -112,7 +77,7 @@ export default class DFTextInput extends Component<DFTextInputProps> {
                     </div>
                 ) : null}
 
-                <input
+                <textarea
                     className={
                         styles.tput_input + " bdyt " + this.props.inputClassName
                     }
@@ -122,7 +87,6 @@ export default class DFTextInput extends Component<DFTextInputProps> {
                     style={input_st}
                     disabled={this.props.disabled}
                     maxLength={this.props.maxLength}
-                    type={m_input_type}
                     autoComplete={this.props.autocomplete}
                     ref={(r) => (this.input = r)}
                 />
@@ -137,7 +101,7 @@ export default class DFTextInput extends Component<DFTextInputProps> {
     }
 }
 
-export interface DFTextInputProps {
+export interface DFTextAreaProps {
     key?: string | number;
     flex?: number | string;
     className?: string;
@@ -146,7 +110,6 @@ export interface DFTextInputProps {
     staticTitle?: string;
     placeholder?: string;
     value?: string;
-    type?: string;
     disabled?: boolean;
     maxLength?: number;
     autocomplete?: string;
@@ -157,7 +120,7 @@ export interface DFTextInputProps {
     direction?: any;
     opacity?: any;
 
-    ref?: (ref: DFTextInput) => void;
+    ref?: (ref: DFTextArea) => void;
     onChange?: (value: string) => void;
     OnEnterKeyPressed?: () => void;
 }

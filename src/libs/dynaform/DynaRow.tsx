@@ -1,61 +1,49 @@
-import React, { Component } from "react";
+import React, { Component, ReactElement } from "react";
 import styles from "./DynaRow.module.css";
 import { DynaRowData } from "./__Types";
 import DFButton from "./controllers/DFButton";
 import DFSelect from "./controllers/DFSelect";
 import DFTextInput from "./controllers/DFTextInput";
 import DFDatePicker from "./controllers/DFDatePicker";
+import DFSpace from "./controllers/DFSpace";
+import DFTextArea from "./controllers/DFTextarea";
 
 export default class DynaRow extends Component<DynaRowProps> {
-    renderRowElement = (element: any, key: number, flex: number): React.ReactNode => {
+    renderRowElement = (
+        element: any,
+        key: number,
+        flex: number
+    ): React.ReactNode => {
 
-        if (element.controller == "select") {
-            return (
-                <DFSelect
-                    key={key}
-                    flex={flex}
-                    value={element.value}
-                    onChange={element.onChange}
-                    options={element.options}
-                />
-            );
+        element.key = key;
+
+        let NodeClass:React.ComponentType<any>;
+
+        switch (element.controller) {
+            case "button":
+                NodeClass = DFButton;
+                break;
+            case "datepicker":
+                NodeClass = DFDatePicker;
+                break;
+            case "select":
+                NodeClass = DFSelect;
+                break;
+            case "space":
+                NodeClass = DFSpace;
+                break;
+            case "textarea":
+                NodeClass = DFTextArea;
+                break;
+            case "textinput":
+                NodeClass = DFTextInput;
+                break;
+
+            default:
+                NodeClass = DFSpace;
         }
 
-        if (element.controller == "textinput") {
-            return (
-                <DFTextInput
-                    key={key}
-                    flex={flex}
-                    title={element.title}
-                    value={element.value}
-                    onChange={element.onChange}
-                />
-            );
-        }
-
-        if (element.controller == "button") {
-            return (
-                <DFButton
-                    key={key}
-                    flex={flex}
-                    title={element.title}
-                    onClick={element.onClick}
-                />
-            );
-        }
-
-        if (element.controller == "datepicker") {
-            return (
-                <DFDatePicker
-                    key={key}
-                    flex={flex}
-                    value={element.value}
-                    onChange={element.onChange}
-                />
-            );
-        }
-
-        return <div />;
+        return <NodeClass flex={flex} {...element} />;
     };
 
     render(): React.ReactNode {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "./test.module.css";
 import Dynaform from "@/libs/dynaform/Dynaform";
 
-
 /**
  * Props of test Component
  * @typedef Props
@@ -16,65 +15,87 @@ export default class test extends Component<TestProps, TestState> {
         super(props);
         this.state = {
             select1: null,
-            select2: null,
-            date: new Date(),
-        }
+            textinput1: "",
+            datepicker1: new Date(),
+        };
     }
 
-    componentDidMount() {
+    componentDidMount() {}
 
-        setInterval(()=>{
-            this.onDateChange({value:new Date()});
-        }, 9000);
-    }
-
-    onDateChange=(e:{value:Date})=>{
-
+    onDateChange = (e: { value: Date }) => {
         console.log(e.value);
-        
-        this.setState({date:e.value});
-    }
+
+        this.setState({ datepicker1: e.value });
+    };
 
     render() {
         return (
             <div className={styles.con}>
-                
                 <Dynaform
                     formData={{
                         rows: [
                             {
-                                columnSizes: [2,6,4],
+                                columnSizes: [2, 2, 2, 2, 2],
                                 elements: [
                                     {
                                         controller: "button",
                                         id: "btn1",
                                         title: "ثبت",
+                                        type: "primary",
                                     },
                                     {
-                                        controller:"select",
+                                        controller: "datepicker",
+                                        id: "datepicker1",
+                                        onChange: (date: Date) => {
+                                            this.setState({
+                                                datepicker1: date,
+                                            });
+                                        },
+                                        value: this.state.datepicker1,
+                                    },
+                                    {
+                                        controller: "select",
                                         id: "select1",
                                         options: [
-                                            {value:10, title:"10"}
+                                            { value: 1, title: "سواری" },
+                                            { value: 2, title: "اتوبوس" },
                                         ],
-                                        onChange: (event, child) => {
-
-                                            this.setState({select1:event.target.value})
+                                        onChange: (item) => {
+                                            this.setState({ select1: item });
                                         },
-                                        value: this.state.select1
+                                        value: this.state.select1,
                                     },
                                     {
-                                        controller:"select",
-                                        id: "select2",
-                                        options: [
-                                            {value:10, title:"10"}
-                                        ],
-                                        onChange: (event, child) => {
-                                            this.setState({select2:event.target.value})
+                                        controller: "space",
+                                        id: "space1",
+                                    },
+                                    {
+                                        controller: "textinput",
+                                        id: "textinput1",
+                                        title: "نام خانوادگی",
+                                        onChange: (value) => {
+                                            this.setState({
+                                                textinput1: value,
+                                            });
                                         },
-                                        value:this.state.select2
+                                        value: this.state.textinput1,
                                     },
                                 ],
                             },
+                            {
+                                columnSizes:[2,2,2,2],
+                                elements:[
+                                    {
+                                        controller:"textarea",
+                                        id:"textarea1",
+                                        title:"توضیحات",
+                                        onChange: (value) => {
+                                            this.setState({textinput1:value})
+                                        },
+                                        value: this.state.textinput1
+                                    }
+                                ]
+                            }
                         ],
                     }}
                 />
@@ -83,13 +104,10 @@ export default class test extends Component<TestProps, TestState> {
     }
 }
 
-interface TestProps {
-
-}
+interface TestProps {}
 
 interface TestState {
-
-    select1: number | null,
-    select2: number| null,
-    date: Date,
+    datepicker1: Date;
+    select1: any | null;
+    textinput1: string;
 }

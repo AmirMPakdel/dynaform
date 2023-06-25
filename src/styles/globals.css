@@ -2,6 +2,12 @@
   font-family: IranSans;
 }
 
+/*amp for datepicker*/
+.css-7qlbje{
+  right: unset !important;
+  left: 8px !important;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;

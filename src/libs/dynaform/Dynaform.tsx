@@ -28,7 +28,7 @@ export default class Dynaform extends Component<DynaformProps> {
 
         return (
             <div className={con_class}>
-                    {this.renderFormFromData(this.props.formData)}
+                {this.renderFormFromData(this.props.formData)}
             </div>
         );
     }
